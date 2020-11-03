@@ -4666,6 +4666,10 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1610944086}
+    - target: {fileID: 2045762158015880855, guid: e656f179e84de6c47b23fc6db3bd97dd, type: 3}
+      propertyPath: m_Name
+      value: PlayerCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 2045762158045194089, guid: e656f179e84de6c47b23fc6db3bd97dd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.4401309
