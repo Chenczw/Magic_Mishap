@@ -67,4 +67,15 @@ public class PlayerControler : MonoBehaviour
 
         isFacingRight = !isFacingRight;
     }
+
+    // Detect when another object collides with the player
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Delete the "other" object if it as an object
+        if (other.gameObject.CompareTag("Object"))
+        {
+            ScoreScript.scoreValue += ScoreScript.gemScoreIncrement;
+            Destroy(other.gameObject);
+        }
+    }
 }
