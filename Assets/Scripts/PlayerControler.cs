@@ -16,6 +16,7 @@ public class PlayerControler : MonoBehaviour
     private Animator anim;
     private bool isGrounded = false;
     private bool isFacingRight = true;
+    private bool hasBeenHit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +77,14 @@ public class PlayerControler : MonoBehaviour
         {
             ScoreScript.scoreValue += ScoreScript.gemScoreIncrement;
             Destroy(other.gameObject);
+        }
+
+        // Trigger "die" animation if the player has hit the enemy
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            hasBeenHit = true;
+            // Commuicate with the animator
+            anim.SetBool("hasBeenHit", hasBeenHit);
         }
     }
 }
