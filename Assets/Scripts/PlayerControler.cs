@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
 {
-    //"Public" variables: SerializeField - 目的为了别人看不到但是自己可以在Unity里面改
+    //"Public" variables: SerializeField
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpForce = 500.0f;
     [SerializeField] private float groundCheckRadius = 0.15f;
@@ -32,8 +32,6 @@ public class PlayerControler : MonoBehaviour
         isGrounded = GroundCheck();
 
         //jump code. 
-        /*一般在 &&情况下无所谓顺序，但是 isGrounded 是一个 bool 类型的数据。放前面对于运算更简便
-         所以在这里顺序很重要*/
         if (isGrounded && Input.GetAxis("Jump") > 0)
         {
             rBody.AddForce(new Vector2(0.0f, jumpForce));
@@ -59,7 +57,6 @@ public class PlayerControler : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, whatIsGround);
     }
 
-    //转身
     private void Flip()
     {
         Vector3 temp = transform.localScale;
