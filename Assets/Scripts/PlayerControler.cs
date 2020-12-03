@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
 {
-    //"Public" variables: SerializeField
+    // "Public" variables
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpForce = 500.0f;
     [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private Transform groundCheckPos;
     [SerializeField] private LayerMask whatIsGround;
 
-    //private variable
+    // Private Variables
     private Rigidbody2D rBody;
     private Animator anim;
     private bool isGrounded = false;
     private bool isFacingRight = true;
+    //private bool isLevelEnd = false;
     private bool hasBeenHit = false;
 
     // Start is called before the first frame update
@@ -31,17 +32,18 @@ public class PlayerControler : MonoBehaviour
         float horiz = Input.GetAxis("Horizontal");
         isGrounded = GroundCheck();
 
-        //jump code. 
+        // Jump code goes here!
         if (isGrounded && Input.GetAxis("Jump") > 0)
         {
             rBody.AddForce(new Vector2(0.0f, jumpForce));
             isGrounded = false;
+            // GetComponent<AudioSource>().Play();
         }
 
         rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
 
         //Check is the sprite needs to be flipped
-        if((isFacingRight && rBody.velocity.x < 0) || (!isFacingRight && rBody.velocity.x>0))
+        if ((isFacingRight && rBody.velocity.x < 0) || (!isFacingRight && rBody.velocity.x>0))
         {
             Flip();
         }

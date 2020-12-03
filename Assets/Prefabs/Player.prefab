@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 933048338344292945}
   - component: {fileID: 933048338344292944}
   - component: {fileID: 933048338344292947}
-  - component: {fileID: 933048338344292946}
+  - component: {fileID: 8039306135032484879}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -173,7 +173,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &933048338344292946
+--- !u!114 &8039306135032484879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,9 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 300
-  groundCheckRadius: 0.1
+  jumpForce: 500
+  groundCheckRadius: 0.15
   groundCheckPos: {fileID: 933048338203124023}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
