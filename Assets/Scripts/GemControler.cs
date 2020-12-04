@@ -6,12 +6,12 @@ public class GemControler : MonoBehaviour
 {
     [SerializeField] private GameObject itemFeedback;
 
-    //private LevelController levelController;
+    private LevelController levelController;
 
-    //public void Start()
-    //{
-    //    levelController = LevelController.Instance;
-    //}
+    public void Start()
+    {
+        levelController = LevelController.Instance;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,7 +21,7 @@ public class GemControler : MonoBehaviour
             GameObject.Instantiate(itemFeedback, this.transform.position, this.transform.rotation);
 
             // Increase player item pickup counter
-            //levelController.PickedUpItem();
+            levelController.PickedUpItem();
 
             Destroy(this.gameObject);
         }

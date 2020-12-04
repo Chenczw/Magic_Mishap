@@ -16,7 +16,7 @@ public class PlayerControler : MonoBehaviour
     private Animator anim;
     private bool isGrounded = false;
     private bool isFacingRight = true;
-    //private bool isLevelEnd = false;
+    private bool isLevelEnd = false;
     private bool hasBeenHit = false;
 
     // Start is called before the first frame update
@@ -29,29 +29,39 @@ public class PlayerControler : MonoBehaviour
     //Physics
     private void FixedUpdate()
     {
-        float horiz = Input.GetAxis("Horizontal");
-        isGrounded = GroundCheck();
-
-        // Jump code goes here!
-        if (isGrounded && Input.GetAxis("Jump") > 0)
+        if (!isLevelEnd)
         {
-            rBody.AddForce(new Vector2(0.0f, jumpForce));
-            isGrounded = false;
-            GetComponent<AudioSource>().Play();
+            float horiz = Input.GetAxis("Horizontal");
+            isGrounded = GroundCheck();
+
+            // Jump code goes here!
+            if (isGrounded && Input.GetAxis("Jump") > 0)
+            {
+                rBody.AddForce(new Vector2(0.0f, jumpForce));
+                isGrounded = false;
+                GetComponent<AudioSource>().Play();
+            }
+
+            rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
+
+            //Check is the sprite needs to be flipped
+            if ((isFacingRight && rBody.velocity.x < 0) || (!isFacingRight && rBody.velocity.x > 0))
+            {
+                Flip();
+            }
+
+            //Commuicate with the animator
+            anim.SetFloat("xVelocity", Mathf.Abs(rBody.velocity.x));
+            anim.SetFloat("yVelocity", rBody.velocity.y);
+            anim.SetBool("isGrounded", isGrounded);
         }
-
-        rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
-
-        //Check is the sprite needs to be flipped
-        if ((isFacingRight && rBody.velocity.x < 0) || (!isFacingRight && rBody.velocity.x>0))
+        else
         {
-            Flip();
-        }
-        
-        //Commuicate with the animator
-        anim.SetFloat("xVelocity", Mathf.Abs(rBody.velocity.x));
-        anim.SetFloat("yVelocity", rBody.velocity.y);
-        anim.SetBool("isGrounded", isGrounded);
+            //Commuicate with the animator
+            anim.SetFloat("xVelocity", 0.0f);
+            anim.SetFloat("yVelocity", 0.0f);
+            anim.SetBool("isGrounded", isGrounded);
+        }    
     }
 
     private bool GroundCheck()
@@ -67,6 +77,8 @@ public class PlayerControler : MonoBehaviour
 
         isFacingRight = !isFacingRight;
     }
+
+
 
     // Detect when another object collides with the player
     private void OnCollisionEnter2D(Collision2D other)
