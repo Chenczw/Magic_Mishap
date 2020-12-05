@@ -718,6 +718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelEnd
       objectReference: {fileID: 0}
+    - target: {fileID: 7110761979475757141, guid: 856b674a29e973943b1b40a377f5f941, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1019
+      objectReference: {fileID: 0}
     - target: {fileID: 7110761980180230182, guid: 856b674a29e973943b1b40a377f5f941, type: 3}
       propertyPath: m_Camera
       value: 
