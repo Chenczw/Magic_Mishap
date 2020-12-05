@@ -78,7 +78,10 @@ public class PlayerControler : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
-
+    public void LevelEndTrigger()
+    {
+        isLevelEnd = true;
+    }
 
     // Detect when another object collides with the player
     private void OnCollisionEnter2D(Collision2D other)
